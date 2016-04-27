@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset='utf-8' />
-	<title>HTML5x新特性检测</title>
+	<title>HTML5新特性检测</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="format-detection" content="telephone=no" />
     <meta name="format-detection" content="email=no" />
@@ -16,6 +16,30 @@
 	
 </body>
 <script>
-	
+	function support_canvas(){
+		return !!document.createElement('canvas').getContext;
+	};
+	function support_video(){
+		return !!document.createElement('video').canPlayType;
+	};
+	function support_local_storage(){
+		return ('localStorage' in window) && window['localStorage'] !== null;
+	};
+	function support_web_workers(){
+		return !!window.worker;
+	};
+	function support_offline(){
+		return !!window.applicationCache;
+	};
+	function support_geolocation(){
+		return !!navigator.geolocation;
+	};
+	function support_input_placeholder(){
+		var i = document.createElement('input');
+		return 'placeholder' in i;
+	};
+	function support_microdate_api(){
+		return !!window.getItems;
+	};
 </script>
 </html>
