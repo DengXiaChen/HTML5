@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+	<title>requestAnimationFrame</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <style>
+    .scroll{
+    	animation-name: scroll;
+    	-webkit-animation-name: scroll;
+    	animation-duration: 1.7s;
+    	-webkit-animation-duration: 1.7s;
+    	animation-timing-function: linear;
+    	-webkit-animation-timing-function: linear;
+    	animation-fill-mode: forwards;
+    	-webkit-animation-fill-mode: forwards;
+    }
+    @keyframes scroll{
+    	from {width: 0%;}
+    	to {width: 100%;}
+    }
+    @-webkit-keyframes scroll{
+    	from {width: 0%;}
+    	to {width: 100%;}
+    }
+    </style>
+</head>
+<body>
+	<div id="test" style="width:1px;height:17px;background:#0f0;">0%</div>
+	<input type="button" value="rAFRun" id="run"/>
+	<div id="oldTest" style="width:1px;height:17px;background:#0f0;">0%</div>
+	<input type="button" value="setIntervalRun" id="oldRun"/>
+	<div class="scroll  " id="cssTest" style="width:1px;height:17px;background:#0f0;">0%</div>
+	<input type="button" value="cssRun" id="cssRun"/><br>
+	<input type="button" value="allRun" id="allRun"/>
+</body>
+<script>
+	window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+	var start = null;
+	var ele = document.getElementById("test");
+	var progress = 0;
+
+	function step(timestamp) {
+	    progress += 1;
+	    ele.style.width = progress + "%";
+	    ele.innerHTML=progress + "%";
+	    if (progress < 100) {
+	        requestAnimationFrame(step);
+	    }
+	}
+	requestAnimationFrame(step);
+	document.getElementById("run").addEventListener("click", function() {
+	    ele.style.width = "1px";
+	    progress = 0;
+	    requestAnimationFrame(step);
+	}, false);
+
+	var oldEle = document.getElementById('oldTest');
+	console.log(oldEle);
+	var oldProgress = 0;
+	var timer = setInterval(function(){
+		if(oldProgress<100){
+			oldProgress += 1;
+			oldEle.style.width = oldProgress +"%";
+			oldEle.innerHTML = oldProgress + "%";
+		}
+	},17)
+	document.getElementById('oldRun').addEventListener('click',function() {
+		oldEle.style.width = "1px";
+	    oldProgress = 0;
+	})
+
+	var cssEle = document.getElementById('cssTest');
+	document.getElementById('cssRun').addEventListener('click',function() {
+		cssEle.className = "scroll";
+	})
+
+	document.getElementById('allRun').addEventListener('click',function(){
+		document.getElementById("run").click();
+		document.getElementById('oldRun').click();
+		document.getElementById('cssRun').click();
+	})
+</script>
+</html>
