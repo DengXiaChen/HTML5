@@ -41,5 +41,11 @@
 	function support_microdate_api(){
 		return !!window.getItems;
 	};
+	function supprot_download(){
+		return 'download' in document.createElement('a');
+	};
+	function support_history_API(){
+		return !!(window.history && history.pushState);
+	}
 </script>
 </html>
