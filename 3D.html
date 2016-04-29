@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>HTML5新特性检测</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <style>
+    .box{
+        position: relative;
+        top: 200px;
+        left: 200px;
+        transform-style: preserve-3d;
+        -webkit-transform-style: preserve-3d;
+        animation: rotation 8s infinite;
+        transform-origin: 50px 50px;
+        -webkit-transform-origin: 50px 50px;
+    }
+    @keyframes rotation{
+        0%{
+            transform: rotateX(45deg) rotateY(45deg);
+            -webkit-transform: rotateX(45deg) rotateY(45deg);
+        }
+        50%{
+            transform: rotateX(360deg) rotateY(360deg);
+            -webkit-transform: rotateX(360deg) rotateY(360deg);
+        }
+        100%{
+            transform: rotateX(45deg) rotateY(45deg);
+            -webkit-transform: rotateX(45deg) rotateY(45deg);
+        }
+    }
+    .box div{
+        width: 100px;
+        height: 100px;
+        background-color: #aaa;
+        border: 1px solid #000;
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        opacity: 0.5;
+        position: absolute;
+    }
+    .box div.top{
+        transform: rotate3d(1,0,0,90deg) translate3d(0,0,100px);
+        -webkit-transform: rotate3d(1,0,0,90deg) translateX(0,0,100px);
+    }
+    .box div.bottom{
+        transform: rotate3d(1,0,0,90deg) translate3d(0,0,0);
+        -webkit-transform: rotate3d(1,0,0,90deg) translateX(0,0,0);
+    }
+    .box div.left{
+        transform: rotate3d(0,1,0,90deg) translate3d(0px,-50px,-50px);
+        -webkit-transform: rotate3d(0,1,0,90deg) translateX(0px,-50,-50px);
+    }
+    .box div.right{
+        transform: rotate3d(0,1,0,90deg) translate3d(0px,-50px,50px);
+        -webkit-transform: rotate3d(0,1,0,90deg) translateX(0px,-50px,50px);
+    }
+    .box div.forward{
+        transform: rotate3d(0,0,0,90deg) translate3d(0,-50px,50px);
+        -webkit-transform: rotate3d(0,0,0,90deg) translateX(0,-50px,50px);
+    }
+    .box div.backward{
+        transform: rotate3d(0,0,0,90deg) translate3d(0px,-50px,-50px);
+        -webkit-transform: rotate3d(0,0,0,90deg) translateX(50px,0,-100px);
+    }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="top">top</div>
+        <div class="bottom">bottom</div>
+        <div class="left">left</div>
+        <div class="right">right</div>
+        <div class="forward">forward</div>
+        <div class="backward">backward</div>
+    </div>
+</body>
+<script>
+
+</script>
+</html>
